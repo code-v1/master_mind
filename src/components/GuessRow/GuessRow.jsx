@@ -3,7 +3,7 @@ import GuessPegs from '../GuessPegs/GuessPegs'
 import GuessScore from '../GuessScore/GuessScore'
 
 const GuessRow = (props) => (
-    <div className='component'>
+    <div className='flex-g'>
     Guess Row #
     <GuessPegs />
     <GuessScore />

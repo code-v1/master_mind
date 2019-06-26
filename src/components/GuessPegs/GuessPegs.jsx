@@ -2,7 +2,7 @@ import React from 'react'
 import GuessPeg from '../GuessPeg/GuessPeg'
 
 const GuessPegs = (props) => (
-    <div className='component'>
+    <div className='flex-g'>
         GuessPegs
         <GuessPeg />
         <GuessPeg />
