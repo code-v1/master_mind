@@ -11,15 +11,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">React Mastermind</header>
-        <div className='flex-g'>
+      <div className='flex-g'>
         <GameBoard  />
         <div>
         <ColorPicker />
         <GameTimer />
         <NewGameButton />
-          </div>
         </div>
-        <footer className="component">footer</footer>
+      </div>
+        <footer>footer</footer>
 
       </div>
     );
