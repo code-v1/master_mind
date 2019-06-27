@@ -23,3 +23,7 @@ code {
   justify-content: center;
   
 }
+
+button:focus, .btn:focus {
+  outline: none;
+}
