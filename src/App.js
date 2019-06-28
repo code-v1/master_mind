@@ -13,21 +13,28 @@ class App extends Component {
     super();
     this.state={
       selColorIdx: 0,
-      guesses: [this.getNewGuess(), this.getNewGuess()],
+      guesses: [this.getNewGuess()],
       code:this.genCode()
     };
+
   }
+
+
 
   getNewGuess() {
     return{
-      // code: [null, null, null, null],
-      code: [3, 2, 1, 0],
+      code: [null, null, null, null],
       score: {
         perfect: 0,
         almost: 0
       }
     };
   }
+
+  handleColorSelection = (colorIdx) => {
+    this.setState({selColorIdx: colorIdx});
+  };
+
 
   genCode() {
     return new Array(4).fill().map(() => Math.floor(Math.random() * colors.length));
@@ -39,6 +46,8 @@ class App extends Component {
     return this.state.guesses[lastGuess].score.perfect === 4 ? lastGuess + 1 : 0;
   }
   
+
+
   render() {
     let winTries = this.getWinTries();
     return (
@@ -53,6 +62,7 @@ class App extends Component {
             <ColorPicker
               colors={colors}
               selColorIdx={this.state.selColorIdx}
+              handleC                        olorSelection={this.handleColorSelection}
             />
             <GameTimer />
             <NewGameButton />
