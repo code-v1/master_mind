@@ -1,3 +1,13 @@
+.ColorPicker {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+
+
+
+
 .button:hover {
     opacity: 1;
   }
