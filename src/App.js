@@ -43,37 +43,26 @@ class App extends Component {
     let winTries = this.getWinTries();
     return (
       <div className="App">
-      <button onClick={() =>
-        this.setState((state) => {
-          return {
-          
-          selColorIdx: ++state.selColorIdx % 4
-          }
-        })
-      }>
-        Next Color
-      </button>
-      Selected color: {colors[this.state.selColorIdx]}
-        <header className="App-header">React Mastermind</header>
-      <div className='flex-g'>
-        <GameBoard 
-          colors={colors}
-          guesses={this.state.guesses}
-        />
-        <div>
-        <ColorPicker 
-        colors={colors}
-        selColorIdx={this.state.selColorIdx} 
-        />
-        <GameTimer />
-        <NewGameButton />
+        <header className='App-header-footer'>R E A C T &nbsp;&nbsp;&nbsp;  M A S T E R M I N D</header>
+        <div className="flex-h align-flex-end">
+          <GameBoard
+            colors={colors}
+            guesses={this.state.guesses}
+          />
+          <div className='App-controls'>
+            <ColorPicker
+              colors={colors}
+              selColorIdx={this.state.selColorIdx}
+            />
+            <GameTimer />
+            <NewGameButton />
+          </div>
         </div>
-      </div>
-        <footer>{(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}</footer>
-
+        <footer className='App-header-footer'>
+          {(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}
+        </footer>
       </div>
     );
-
   }
 }
 
