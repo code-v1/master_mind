@@ -1,5 +1,7 @@
+
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -12,16 +14,14 @@ code {
     monospace;
 }
 
-.component {
-  border: 2px dotted red;
-  margin: 4px;
-  padding: 4px;
-}
-
-.flex-g {
+.flex-h {
   display: flex;
   justify-content: center;
-  
+  align-items: center;
+}
+
+.align-flex-end {
+  align-items: flex-end;
 }
 
 button:focus, .btn:focus {
