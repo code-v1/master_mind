@@ -4,11 +4,18 @@
   flex-direction: column;
 }
 
-.App-header {
-  background-color: #222;
+.App-header-footer {
   height: 50px;
   padding: 10px;
-  color: white;
-  font-size: 22px;
+  margin: 15px 0;
+  color: grey;
+  font-size: 18px;
   text-align: center;
+}
+
+.App-controls {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-left: 20px;
 }
