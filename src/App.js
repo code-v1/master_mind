@@ -11,14 +11,18 @@ const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
 class App extends Component {
   constructor() {
     super();
-    this.state={
+    this.state = this.newGame();
+  }
+
+  newGame() {
+   return {
       selColorIdx: 0,
       guesses: [this.getNewGuess()],
       code:this.genCode()
+      
     };
 
   }
-
 
 
   getNewGuess() {
@@ -34,6 +38,11 @@ class App extends Component {
   handleColorSelection = (colorIdx) => {
     this.setState({selColorIdx: colorIdx});
   };
+
+  handleNewGameClick = () => {
+    this.setState(this.newGame()); 
+    console.log('working');
+  }
 
 
   genCode() {
@@ -62,10 +71,12 @@ class App extends Component {
             <ColorPicker
               colors={colors}
               selColorIdx={this.state.selColorIdx}
-              handleC                        olorSelection={this.handleColorSelection}
+              handleColorSelection={this.handleColorSelection}
             />
             <GameTimer />
-            <NewGameButton />
+            <NewGameButton 
+              handleNewGameClick={this.handleNewGameClick}
+            />
           </div>
         </div>
         <footer className='App-header-footer'>
