@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import GameBoard from '../../GameBoard/GameBoard';
-import ColorPicker from '../../ColorPicker/ColorPicker'
-import GameTimer from '../../GameTimer/GameTimer'
-import NewGameButton from '../../NewGameButton/NewGameButton'
-import { Route } from 'react-router-dom';
+import GamePage from '../../pages/App/GamePage/GamePage';
+import SettingsPage from '../../pages/App/SettingsPage/SettingsPage'
+import { Route, Switch } from 'react-router-dom';
 
 const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
 
@@ -142,32 +140,26 @@ this.setState({
     let winTries = this.getWinTries();
     return (
       <div className="App">
-        <header className='App-header-footer'>R E A C T &nbsp;&nbsp;&nbsp;  M A S T E R M I N D</header>
-        <Route path='/timer' render={(props) => (
-          <GameTimer {...props}/>
-        )}/>
-        <div className="flex-h align-flex-end">
-          <GameBoard
-            colors={colors}
-            guesses={this.state.guesses}
-            handlePegClick={this.handlePegClick}
-            handleScoreClick={this.handleScoreClick}
-          />
-          <div className='App-controls'>
-            <ColorPicker
-              colors={colors}
-              selColorIdx={this.state.selColorIdx}
-              handleColorSelection={this.handleColorSelection}
-            />
-            <GameTimer />
-            <NewGameButton 
-              handleNewGameClick={this.handleNewGameClick}
-            />
-          </div>
-        </div>
-        <footer className='App-header-footer'>
-          {(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}
-        </footer>
+      <header className='App-header-footer'>R E A C T &nbsp;&nbsp;&nbsp;  M A S T E R M I N D</header>
+      <Switch>
+      <Route exact path='/' render={() => 
+        <GamePage
+        winTries={winTries}
+        colors={colors}
+        selColorIdx={this.state.selColorIdx}
+        guesses={this.state.guesses}
+        handleColorSelection={this.handleColorSelection}
+        handleNewGameClick={this.handleNewGameClick}
+        handlePegClick={this.handlePegClick}
+        handleScoreClick={this.handleScoreClick}
+      />
+    }/>
+
+      <Route  path='/settings' render={(props) =>
+      <SettingsPage {...props} />
+      
+      }/>
+      </Switch>    
       </div>
     );
   }
