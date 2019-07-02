@@ -15,13 +15,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {...this.newGame(), difficulty: 'Easy'};
+    this.componentDidMount(console.log('App: constructor')) 
   }
 
   newGame() {
    return {
       selColorIdx: 0,
       guesses: [this.getNewGuess()],
-      code:this.genCode()
+      code:this.genCode(),
+      elapsedTime: 0
       
     };
 
@@ -86,6 +88,16 @@ class App extends Component {
     });
   }
 
+  // Lifecycle methods 
+
+  componentDidMount() {
+    console.log('App: componentDidMount');
+  }
+
+  componentDidUpdate(){
+    console.log('App: componentDidUpdate');
+  }
+
 handleScoreClick = () => {
   // this is the index of the current guess object (last object in guesses array)
   let currentGuessIdx = this.state.guesses.length -1;
@@ -143,8 +155,15 @@ this.setState({
 });
 }
 
+handleTimerUpdate = () => {
+  this.setState((state) => ({
+    elapsedTime: ++state.elapsedTime
+  }));
+}
+
 
   render() {
+    this.componentDidMount(console.log('App: render'))
     let winTries = this.getWinTries();
     return (
       <div className="App">
@@ -156,10 +175,12 @@ this.setState({
         colors={colors[this.state.difficulty]}
         selColorIdx={this.state.selColorIdx}
         guesses={this.state.guesses}
+        elapsedTime={this.state.elapsedTime}
         handleColorSelection={this.handleColorSelection}
         handleNewGameClick={this.handleNewGameClick}
         handlePegClick={this.handlePegClick}
         handleScoreClick={this.handleScoreClick}
+        handleTimerUpdate={this.handleTimerUpdate}
       />
     }/>
 
