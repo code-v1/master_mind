@@ -4,13 +4,17 @@ import GamePage from '../../pages/App/GamePage/GamePage';
 import SettingsPage from '../../pages/App/SettingsPage/SettingsPage'
 import { Route, Switch } from 'react-router-dom';
 
-const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
+const colors = {
+  Easy: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'],
+  Moderate: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968'],
+  Difficult: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968', '#555E7B']
+};
 
 
 class App extends Component {
   constructor() {
     super();
-    this.state = this.newGame();
+    this.state = {...this.newGame(), difficulty: 'Easy'};
   }
 
   newGame() {
@@ -32,6 +36,10 @@ class App extends Component {
         almost: 0
       }
     };
+  }
+
+  handleDifficultyChange = (level) => {
+    this.setState({difficulty: level});
   }
 
   handleColorSelection = (colorIdx) => {
@@ -145,7 +153,7 @@ this.setState({
       <Route exact path='/' render={() => 
         <GamePage
         winTries={winTries}
-        colors={colors}
+        colors={colors[this.state.difficulty]}
         selColorIdx={this.state.selColorIdx}
         guesses={this.state.guesses}
         handleColorSelection={this.handleColorSelection}
@@ -156,7 +164,13 @@ this.setState({
     }/>
 
       <Route  path='/settings' render={(props) =>
-      <SettingsPage {...props} />
+      <SettingsPage
+      {...props} 
+      colorsLookup={colors}
+      difficulty={this.state.difficulty}
+      handleDifficultyChange={this.handleDifficultyChange}
+      handleNewGameClick={this.handleNewGameClick}
+      />
       
       }/>
       </Switch>    
