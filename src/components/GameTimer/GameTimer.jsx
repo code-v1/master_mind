@@ -1,10 +1,37 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styles from './GameTimer.module.css';
 
-const GameTimer = (props) => (
+function formatTime(seconds) {
+    let mins = Math.floor(seconds / 60).toString().padStart(2,'0');
+    let secs = (seconds % 60).toString().padStart(2,'0');
+    return `${mins}:${secs}`;
+}
+
+
+class GameTimer extends Component { 
+
+handleTick = () => {
+    this.props.handleTimerUpdate();
+
+}
+
+ componentDidMount(){
+    this.timerId = setInterval(this.handleTick, 1000);
+
+   
+}
+
+componentWillMount () {
+        clearInterval(this.timerId);
+    }
+
+    render () {
+        
+        return(
     <div className={`${styles.GameTimer} flex-h`}>
-    00:00
+    {formatTime(this.props.elapsedTime)}
     </div>
-);
+        )} 
+ };
 
 export default GameTimer;
